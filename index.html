@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Samba & Cadência | A verdadeira essência do samba</title>
+<meta name="description" content="Samba & Cadência — Grupo de samba de raiz, pagode e partido alto. Shows, agenda, hub do contratante e material de imprensa.">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500;1,9..144,700&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          couro: '#170F0A',
+          couro2: '#20150C',
+          carvao: '#2A1B10',
+          ouro: '#E3A73A',
+          ourolight: '#F4C468',
+          laranja: '#D9762B',
+          vinho: '#7C2D3B',
+          vinholight: '#9C3B4C',
+          creme: '#F5ECDD',
+          fumaca: '#C9B8A0',
+        },
+        fontFamily: {
+          display: ['Fraunces', 'serif'],
+          body: ['Manrope', 'sans-serif'],
+          mono: ['JetBrains Mono', 'monospace'],
+        },
+      }
+    }
+  }
+</script>
+
+<style>
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: #170F0A;
+    color: #F5ECDD;
+    font-family: 'Manrope', sans-serif;
+  }
+  ::selection { background: #E3A73A; color: #170F0A; }
+
+  /* --- textures & atmosphere --- */
+  .grain::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+    pointer-events:none; z-index:1; mix-blend-mode:overlay;
+  }
+
+  .section-title{
+    font-family:'Fraunces', serif;
+    font-optical-sizing: auto;
+  }
+
+  /* pandeiro divider */
+  .pandeiro{
+    width: 22px; height: 22px; border-radius:50%;
+    border: 2px solid #E3A73A;
+    position: relative;
+    flex-shrink:0;
+  }
+  .pandeiro::after{
+    content:"";
+    position:absolute; inset:5px;
+    border-radius:50%;
+    border: 1px solid rgba(227,167,58,0.5);
+  }
+
+  .eyebrow{
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #D9762B;
+  }
+
+  .gold-underline{
+    background-image: linear-gradient(90deg, #E3A73A, #D9762B);
+    height: 3px;
+    width: 56px;
+    border-radius: 2px;
+  }
+
+  /* nav link underline */
+  .nav-link{ position:relative; }
+  .nav-link::after{
+    content:"";
+    position:absolute; left:0; bottom:-4px;
+    width:0%; height:2px;
+    background: linear-gradient(90deg,#E3A73A,#D9762B);
+    transition: width .3s ease;
+  }
+  .nav-link:hover::after{ width:100%; }
+
+  /* card */
+  .card{
+    background: linear-gradient(180deg, #2A1B10 0%, #221609 100%);
+    border: 1px solid rgba(227,167,58,0.12);
+  }
+  .card:hover{ border-color: rgba(227,167,58,0.35); }
+
+  .btn-primary{
+    background: linear-gradient(135deg, #F4C468, #D9762B);
+    color: #170F0A;
+    font-weight: 700;
+    transition: transform .25s ease, box-shadow .25s ease, filter .25s ease;
+  }
+  .btn-primary:hover{ transform: translateY(-2px); box-shadow: 0 10px 30px -8px rgba(227,167,58,.55); filter: brightness(1.05); }
+
+  .btn-outline{
+    border: 1.5px solid #E3A73A; color:#F4C468;
+    transition: all .25s ease;
+  }
+  .btn-outline:hover{ background: #E3A73A; color:#170F0A; }
+
+  /* vinyl */
+  .vinyl{
+    background:
+      repeating-radial-gradient(circle at center, #0c0805 0px, #0c0805 2px, #1a120c 3px, #1a120c 4px);
+    border-radius: 50%;
+    box-shadow: 0 0 0 10px #170F0A, 0 0 0 12px rgba(227,167,58,.35), 0 20px 60px -10px rgba(0,0,0,.7);
+    position: relative;
+  }
+  .vinyl::after{
+    content:"";
+    position:absolute; inset:0; margin:auto;
+    width: 34%; height: 34%;
+    border-radius:50%;
+    background: radial-gradient(circle at 35% 30%, #F4C468, #D9762B 60%, #7C2D3B 100%);
+    border: 3px solid #170F0A;
+  }
+  .vinyl::before{
+    content:"";
+    position:absolute; inset:0; margin:auto;
+    width: 6%; height:6%;
+    border-radius:50%;
+    background:#170F0A;
+    z-index:2;
+  }
+  .spin{ animation: spin 6s linear infinite; }
+  @keyframes spin { from{ transform: rotate(0deg);} to{ transform: rotate(360deg);} }
+
+  /* progress bar */
+  #progressBar{ transition: width .2s linear; }
+
+  /* status badges */
+  .badge-disponivel{ background: rgba(227,167,58,0.15); color:#F4C468; border:1px solid rgba(227,167,58,.4);}
+  .badge-esgotado{ background: rgba(124,45,59,0.25); color:#e79aa8; border:1px solid rgba(156,59,76,.5);}
+
+  /* tabs */
+  .tab-btn{ transition: all .25s ease; }
+  .tab-btn.active{ background: linear-gradient(135deg,#F4C468,#D9762B); color:#170F0A; }
+  .tab-btn:not(.active){ color:#C9B8A0; }
+
+  .tab-panel{ display:none; }
+  .tab-panel.active{ display:block; animation: fadeIn .4s ease; }
+  @keyframes fadeIn{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);} }
+
+  /* stage map */
+  .stage-node{ cursor: pointer; transition: transform .2s ease, filter .2s ease; transform-origin: center; }
+  .stage-node:hover{ transform: scale(1.12); filter: drop-shadow(0 0 8px rgba(227,167,58,.8)); }
+  .stage-node.selected circle{ stroke:#F4C468; stroke-width:3; }
+
+  table.rider-table th{ font-family:'JetBrains Mono', monospace; }
+  table.rider-table td{ font-family:'JetBrains Mono', monospace; }
+
+  input, select, textarea{
+    background:#170F0A;
+    border:1px solid rgba(227,167,58,.25);
+    color:#F5ECDD;
+  }
+  input:focus, select:focus, textarea:focus{
+    outline:none; border-color:#E3A73A; box-shadow:0 0 0 3px rgba(227,167,58,.18);
+  }
+  input::placeholder, textarea::placeholder{ color:#7d6c56; }
+
+  ::-webkit-scrollbar{ width:10px; height:10px; }
+  ::-webkit-scrollbar-track{ background:#170F0A; }
+  ::-webkit-scrollbar-thumb{ background:#3a2917; border-radius:6px; }
+  ::-webkit-scrollbar-thumb:hover{ background:#D9762B; }
+
+  .gallery-item{ transition: transform .35s ease, filter .35s ease; }
+  .gallery-item:hover{ transform: scale(1.03); }
+
+  .filter-btn.active{ background:#E3A73A; color:#170F0A; }
+
+  a:focus-visible, button:focus-visible{ outline: 2px solid #F4C468; outline-offset: 2px; }
+
+  @media (prefers-reduced-motion: reduce){
+    .spin{ animation: none; }
+    html{ scroll-behavior:auto; }
+  }
+</style>
+</head>
+
+<body class="antialiased">
+
+<!-- ============ HEADER ============ -->
+<header id="siteHeader" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-[#170F0A]/90 backdrop-blur-md border-b border-ouro/10">
+  <div class="max-w-7xl mx-auto px-5 md:px-8 flex items-center justify-between h-20">
+    <a href="#home" class="flex items-center gap-3 group">
+      <div class="pandeiro group-hover:rotate-12 transition-transform duration-300"></div>
+      <div class="leading-tight">
+        <span class="block font-display text-xl md:text-2xl font-semibold text-creme tracking-wide">Samba <span class="text-ouro">&amp;</span> Cadência</span>
+        <span class="block eyebrow text-[10px]">Samba de Raiz · Pagode · Partido Alto</span>
+      </div>
+    </a>
+
+    <nav class="hidden lg:flex items-center gap-9 font-body text-sm font-semibold text-fumaca">
+      <a href="#home" class="nav-link hover:text-creme">Home</a>
+      <a href="#sobre" class="nav-link hover:text-creme">Sobre</a>
+      <a href="#shows" class="nav-link hover:text-creme">Shows</a>
+      <a href="#midia" class="nav-link hover:text-creme">Mídia</a>
+      <a href="#contratante" class="nav-link hover:text-creme">Hub do Contratante</a>
+      <a href="#contato" class="nav-link hover:text-creme">Contato</a>
+    </nav>
+
+    <div class="hidden lg:flex items-center gap-3">
+      <a href="#contratante" class="btn-outline rounded-full px-5 py-2.5 text-sm font-bold">Área do Contratante</a>
+      <a href="#contato" class="btn-primary rounded-full px-5 py-2.5 text-sm">Contratar Show</a>
+    </div>
+
+    <button id="menuBtn" aria-label="Abrir menu" aria-expanded="false" class="lg:hidden text-2xl text-ouro">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+  </div>
+
+  <!-- mobile menu -->
+  <div id="mobileMenu" class="lg:hidden hidden flex-col gap-1 px-5 pb-6 bg-[#170F0A] border-t border-ouro/10">
+    <a href="#home" class="mobile-link py-3 border-b border-white/5 text-fumaca font-semibold">Home</a>
+    <a href="#sobre" class="mobile-link py-3 border-b border-white/5 text-fumaca font-semibold">Sobre</a>
+    <a href="#shows" class="mobile-link py-3 border-b border-white/5 text-fumaca font-semibold">Shows</a>
+    <a href="#midia" class="mobile-link py-3 border-b border-white/5 text-fumaca font-semibold">Mídia</a>
+    <a href="#contratante" class="mobile-link py-3 border-b border-white/5 text-fumaca font-semibold">Hub do Contratante</a>
+    <a href="#contato" class="mobile-link py-3 text-fumaca font-semibold">Contato</a>
+    <a href="#contato" class="btn-primary rounded-full text-center mt-4 py-3 text-sm">Contratar Show</a>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section id="home" class="relative overflow-hidden pt-40 pb-24 md:pt-48 md:pb-32">
+  <div class="absolute inset-0 grain"></div>
+  <div class="absolute -top-40 -right-40 w-[32rem] h-[32rem] rounded-full bg-laranja/20 blur-3xl"></div>
+  <div class="absolute -bottom-40 -left-40 w-[32rem] h-[32rem] rounded-full bg-vinho/25 blur-3xl"></div>
+
+  <div class="relative max-w-7xl mx-auto px-5 md:px-8 grid lg:grid-cols-2 gap-16 items-center">
+    <div>
+      <div class="flex items-center gap-3 mb-6">
+        <div class="pandeiro"></div>
+        <span class="eyebrow">Desde 2011 · Mais de 400 shows</span>
+      </div>
+      <h1 class="section-title text-4xl sm:text-5xl md:text-6xl font-semibold leading-[1.08] text-creme">
+        A verdadeira <span class="italic text-transparent bg-clip-text bg-gradient-to-r from-ourolight to-laranja">essência</span> do samba no seu evento.
+      </h1>
+      <p class="mt-6 text-fumaca text-lg max-w-xl">
+        Repertório que passeia pelo samba de raiz, pagode e partido alto — nove músicos em cena, direção musical afiada e a estrutura técnica pronta para qualquer palco, de casas de show a arenas.
+      </p>
+
+      <div class="flex flex-wrap gap-4 mt-9">
+        <a href="#contato" class="btn-primary rounded-full px-7 py-3.5 text-sm flex items-center gap-2">
+          <i class="fa-solid fa-calendar-check"></i> Contratar Show
+        </a>
+        <a href="#contratante" class="btn-outline rounded-full px-7 py-3.5 text-sm font-bold flex items-center gap-2">
+          <i class="fa-solid fa-briefcase"></i> Área do Contratante
+        </a>
+      </div>
+
+      <div class="flex items-center gap-8 mt-12">
+        <div>
+          <p class="font-display text-3xl text-ouro font-semibold">18</p>
+          <p class="text-xs text-fumaca uppercase tracking-wider">anos de estrada</p>
+        </div>
+        <div class="w-px h-10 bg-ouro/20"></div>
+        <div>
+          <p class="font-display text-3xl text-ouro font-semibold">400+</p>
+          <p class="text-xs text-fumaca uppercase tracking-wider">shows realizados</p>
+        </div>
+        <div class="w-px h-10 bg-ouro/20"></div>
+        <div>
+          <p class="font-display text-3xl text-ouro font-semibold">9</p>
+          <p class="text-xs text-fumaca uppercase tracking-wider">músicos em cena</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- PLAYER SIMULADO -->
+    <div class="relative">
+      <div class="card rounded-3xl p-6 md:p-8 shadow-2xl">
+        <div class="flex items-center gap-6">
+          <div class="vinyl w-28 h-28 md:w-32 md:h-32 shrink-0" id="vinylDisc"></div>
+          <div class="min-w-0">
+            <p class="eyebrow mb-1">Tocando agora</p>
+            <p id="trackTitle" class="font-display text-xl md:text-2xl text-creme font-semibold truncate">Roda de Fundo de Quintal</p>
+            <p id="trackAlbum" class="text-fumaca text-sm">Ao Vivo — Álbum "Raiz" (2023)</p>
+          </div>
+        </div>
+
+        <!-- progress -->
+        <div class="mt-6">
+          <div class="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
+            <div id="progressBar" class="h-full bg-gradient-to-r from-ourolight to-laranja rounded-full" style="width:0%"></div>
+          </div>
+          <div class="flex justify-between text-xs text-fumaca mt-2 font-mono">
+            <span id="curTime">0:00</span>
+            <span id="totTime">3:42</span>
+          </div>
+        </div>
+
+        <!-- controls -->
+        <div class="flex items-center justify-center gap-6 mt-6">
+          <button id="prevBtn" aria-label="Faixa anterior" class="text-fumaca hover:text-ouro text-xl transition"><i class="fa-solid fa-backward-step"></i></button>
+          <button id="playBtn" aria-label="Reproduzir" class="w-14 h-14 rounded-full btn-primary flex items-center justify-center text-xl">
+            <i class="fa-solid fa-play" id="playIcon"></i>
+          </button>
+          <button id="nextBtn" aria-label="Próxima faixa" class="text-fumaca hover:text-ouro text-xl transition"><i class="fa-solid fa-forward-step"></i></button>
+        </div>
+
+        <!-- tracklist -->
+        <ul id="trackList" class="mt-7 divide-y divide-white/5 text-sm">
+        </ul>
+
+        <a href="https://open.spotify.com" target="_blank" rel="noopener" class="mt-6 flex items-center justify-center gap-2 w-full rounded-full py-3 bg-[#1DB954]/15 border border-[#1DB954]/40 text-[#57e78d] font-bold text-sm hover:bg-[#1DB954]/25 transition">
+          <i class="fa-brands fa-spotify text-lg"></i> Ouvir álbum completo no Spotify
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SOBRE ============ -->
+<section id="sobre" class="py-24 md:py-32 relative">
+  <div class="max-w-7xl mx-auto px-5 md:px-8">
+    <div class="grid lg:grid-cols-5 gap-16">
+      <div class="lg:col-span-2">
+        <span class="eyebrow">A banda</span>
+        <h2 class="section-title text-3xl md:text-4xl font-semibold text-creme mt-3">Nossa história começou numa roda de quintal</h2>
+        <div class="gold-underline mt-5 mb-7"></div>
+        <p class="text-fumaca leading-relaxed">
+          O Samba & Cadência nasceu em 2007 dentro de uma roda de amigos no subúrbio, entre cavaquinho, pandeiro e um samba cantado em volta da mesa. O que era encontro semanal virou grupo profissional em 2011, e hoje soma mais de quatrocentas apresentações por todo o Brasil — de bares de esquina a grandes arenas e teatros.
+        </p>
+        <p class="text-fumaca leading-relaxed mt-4">
+          O repertório transita com naturalidade entre o samba de raiz, o partido alto e o pagode romântico, sempre com arranjos autorais e um time de músicos que domina tanto a intimidade da roda quanto a energia de um palco grande.
+        </p>
+
+        <div class="flex flex-wrap gap-3 mt-8">
+          <span class="px-4 py-2 rounded-full bg-carvao border border-ouro/20 text-sm text-ourolight font-semibold">Samba de Raiz</span>
+          <span class="px-4 py-2 rounded-full bg-carvao border border-ouro/20 text-sm text-ourolight font-semibold">Pagode</span>
+          <span class="px-4 py-2 rounded-full bg-carvao border border-ouro/20 text-sm text-ourolight font-semibold">Partido Alto</span>
+          <span class="px-4 py-2 rounded-full bg-carvao border border-ouro/20 text-sm text-ourolight font-semibold">Samba-Enredo</span>
+        </div>
+      </div>
+
+      <div class="lg:col-span-3">
+        <div class="grid sm:grid-cols-2 gap-5">
+          <!-- integrantes -->
+          <div class="card rounded-2xl p-5 flex items-center gap-4">
+            <div class="w-14 h-14 rounded-full bg-gradient-to-br from-ourolight to-laranja flex items-center justify-center text-couro font-display font-bold text-lg">MV</div>
+            <div><p class="font-semibold text-creme">Marcelo Vieira</p><p class="text-xs text-fumaca">Voz principal</p></div>
+          </div>
+          <div class="card rounded-2xl p-5 flex items-center gap-4">
+            <div class="w-14 h-14 rounded-full bg-gradient-to-br from-ourolight to-laranja flex items-center justify-center text-couro font-display font-bold text-lg">CT</div>
+            <div><p class="font-semibold text-creme">Cauã Torres</p><p class="text-xs text-fumaca">Cavaquinho e voz</p></div>
+          </div>
+          <div class="card rounded-2xl p-5 flex items-center gap-4">
+            <div class="w-14 h-14 rounded-full bg-gradient-to-br from-ourolight to-laranja flex items-center justify-center text-couro font-display font-bold text-lg">RS</div>
+            <div><p class="font-semibold text-creme">Renata Sales</p><p class="text-xs text-fumaca">Violão de 7 cordas</p></div>
+          </div>
+          <div class="card rounded-2xl p-5 flex items-center gap-4">
+            <div class="w-14 h-14 rounded-full bg-gradient-to-br from-ourolight to-laranja flex items-center justify-center text-couro font-display font-bold text-lg">DL</div>
+            <div><p class="font-semibold text-creme">Diego Lopes</p><p class="text-xs text-fumaca">Pandeiro</p></div>
+          </div>
+          <div class="card rounded-2xl p-5 flex items-center gap-4">
+            <div class="w-14 h-14 rounded-full bg-gradient-to-br from-ourolight to-laranja flex items-center justify-center text-couro font-display font-bold text-lg">JP</div>
+            <div><p class="font-semibold text-creme">João Paiva</p><p class="text-xs text-fumaca">Repique de mão</p></div>
+          </div>
+          <div class="card rounded-2xl p-5 flex items-center gap-4">
+            <div class="w-14 h-14 rounded-full bg-gradient-to-br from-ourolight to-laranja flex items-center justify-center text-couro font-display font-bold text-lg">BF</div>
+            <div><p class="font-semibold text-creme">Bianca Freitas</p><p class="text-xs text-fumaca">Surdo e percussão</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SHOWS / AGENDA ============ -->
+<section id="shows" class="py-24 md:py-32 bg-couro2 relative">
+  <div class="max-w-7xl mx-auto px-5 md:px-8">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
+      <div>
+        <span class="eyebrow">Agenda</span>
+        <h2 class="section-title text-3xl md:text-4xl font-semibold text-creme mt-3">Próximos shows</h2>
+        <div class="gold-underline mt-5"></div>
+      </div>
+      <p class="text-fumaca max-w-sm text-sm">Confira as próximas datas confirmadas. Para eventos privados e datas fora da agenda, fale com nosso empresário.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-5" id="agendaGrid">
+      <!-- cards inseridos via JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ============ GALERIA & MÍDIA ============ -->
+<section id="midia" class="py-24 md:py-32">
+  <div class="max-w-7xl mx-auto px-5 md:px-8">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+      <div>
+        <span class="eyebrow">Galeria</span>
+        <h2 class="section-title text-3xl md:text-4xl font-semibold text-creme mt-3">Mídia & Galeria</h2>
+        <div class="gold-underline mt-5"></div>
+      </div>
+      <div class="flex flex-wrap gap-2" id="galleryFilters">
+        <button data-filter="todos" class="filter-btn active px-4 py-2 rounded-full text-xs font-bold border border-ouro/30 text-fumaca transition">Todos</button>
+        <button data-filter="shows" class="filter-btn px-4 py-2 rounded-full text-xs font-bold border border-ouro/30 text-fumaca transition">Shows</button>
+        <button data-filter="bastidores" class="filter-btn px-4 py-2 rounded-full text-xs font-bold border border-ouro/30 text-fumaca transition">Bastidores</button>
+        <button data-filter="palco" class="filter-btn px-4 py-2 rounded-full text-xs font-bold border border-ouro/30 text-fumaca transition">Palco</button>
+      </div>
+    </div>
+
+    <div id="galleryGrid" class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
+      <!-- imagens inseridas via JS -->
+    </div>
+
+    <h3 class="section-title text-2xl font-semibold text-creme mb-6">Vídeos</h3>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="rounded-2xl overflow-hidden border border-ouro/15 aspect-video">
+        <iframe class="w-full h-full" src="https://www.youtube.com/embed/M7lc1UVf-VE" title="Samba & Cadência ao vivo" loading="lazy" allowfullscreen></iframe>
+      </div>
+      <div class="rounded-2xl overflow-hidden border border-ouro/15 aspect-video">
+        <iframe class="w-full h-full" src="https://www.youtube.com/embed/M7lc1UVf-VE" title="Roda de samba - bastidores" loading="lazy" allowfullscreen></iframe>
+      </div>
+      <div class="rounded-2xl overflow-hidden border border-ouro/15 aspect-video">
+        <iframe class="w-full h-full" src="https://www.youtube.com/embed/M7lc1UVf-VE" title="Making of - Álbum Raiz" loading="lazy" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HUB DO CONTRATANTE ============ -->
+<section id="contratante" class="py-24 md:py-32 bg-couro2 relative overflow-hidden">
+  <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-ouro to-transparent"></div>
+  <div class="max-w-7xl mx-auto px-5 md:px-8">
+    <div class="text-center max-w-2xl mx-auto mb-14">
+      <span class="eyebrow">B2B · Produtores, prefeituras e assessorias</span>
+      <h2 class="section-title text-3xl md:text-4xl font-semibold text-creme mt-3">Hub do Contratante</h2>
+      <div class="gold-underline mt-5 mx-auto"></div>
+      <p class="text-fumaca mt-5">Tudo o que sua produção precisa para viabilizar o show: rider técnico, mapa de palco, banco de imagens e gerador de releases.</p>
+    </div>
+
+    <!-- tabs -->
+    <div class="flex flex-wrap justify-center gap-3 mb-12">
+      <button data-tab="rider" class="tab-btn active px-6 py-3 rounded-full text-sm font-bold flex items-center gap-2"><i class="fa-solid fa-sliders"></i> Rider Técnico</button>
+      <button data-tab="midiakit" class="tab-btn px-6 py-3 rounded-full text-sm font-bold flex items-center gap-2"><i class="fa-solid fa-folder-open"></i> Central de Mídia</button>
+      <button data-tab="release" class="tab-btn px-6 py-3 rounded-full text-sm font-bold flex items-center gap-2"><i class="fa-solid fa-newspaper"></i> Gerador de Releases</button>
+    </div>
+
+    <!-- TAB 1: RIDER TÉCNICO -->
+    <div id="tab-rider" class="tab-panel active">
+      <div class="card rounded-3xl p-6 md:p-10">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+          <div>
+            <h3 class="section-title text-2xl font-semibold text-creme">Mapa de Palco</h3>
+            <p class="text-fumaca text-sm mt-1">Clique nos pontos para ver os detalhes técnicos de cada posição.</p>
+          </div>
+          <button id="downloadRiderBtn" class="btn-primary rounded-full px-6 py-3 text-sm flex items-center gap-2 shrink-0">
+            <i class="fa-solid fa-file-arrow-down"></i> Baixar Rider Técnico (PDF)
+          </button>
+        </div>
+
+        <div class="grid lg:grid-cols-3 gap-8">
+          <!-- SVG stage map -->
+          <div class="lg:col-span-2 bg-[#100a06] rounded-2xl border border-ouro/15 p-4">
+            <svg id="stageMap" viewBox="0 0 800 480" class="w-full h-auto select-none">
+              <!-- stage floor -->
+              <rect x="20" y="20" width="760" height="380" rx="14" fill="#1b120b" stroke="#3a2917" stroke-width="2"/>
+              <text x="400" y="45" text-anchor="middle" fill="#7d6c56" font-size="13" font-family="JetBrains Mono, monospace">FUNDO DO PALCO</text>
+              <text x="400" y="440" text-anchor="middle" fill="#7d6c56" font-size="13" font-family="JetBrains Mono, monospace">FRENTE DO PALCO / PLATEIA</text>
+
+              <!-- monitores (wedges) -->
+              <g fill="#3a2917">
+                <rect x="150" y="330" width="34" height="14" rx="3"/>
+                <rect x="270" y="330" width="34" height="14" rx="3"/>
+                <rect x="390" y="330" width="34" height="14" rx="3"/>
+                <rect x="500" y="330" width="34" height="14" rx="3"/>
+                <rect x="610" y="330" width="34" height="14" rx="3"/>
+              </g>
+
+              <!-- Mesa de som (offstage, audience side) -->
+              <g class="stage-node" data-id="mesa">
+                <rect x="360" y="450" width="80" height="24" rx="4" fill="#20150C" stroke="#E3A73A" stroke-width="1.5"/>
+                <text x="400" y="466" text-anchor="middle" fill="#F4C468" font-size="11" font-family="JetBrains Mono, monospace">MESA FOH</text>
+              </g>
+
+              <!-- Bateria (back center) -->
+              <g class="stage-node" data-id="bateria">
+                <circle cx="650" cy="100" r="34" fill="#2A1B10" stroke="#E3A73A" stroke-width="2"/>
+                <text x="650" y="105" text-anchor="middle" fill="#F4C468" font-size="11" font-weight="700" font-family="JetBrains Mono, monospace">BATERIA</text>
+              </g>
+
+              <!-- Surdos -->
+              <g class="stage-node" data-id="surdo1">
+                <circle cx="540" cy="130" r="26" fill="#2A1B10" stroke="#E3A73A" stroke-width="2"/>
+                <text x="540" y="134" text-anchor="middle" fill="#F4C468" font-size="10" font-family="JetBrains Mono, monospace">SURDO 1</text>
+              </g>
+              <g class="stage-node" data-id="surdo2">
+                <circle cx="460" cy="150" r="26" fill="#2A1B10" stroke="#E3A73A" stroke-width="2"/>
+                <text x="460" y="154" text-anchor="middle" fill="#F4C468" font-size="10" font-family="JetBrains Mono, monospace">SURDO 2</text>
+              </g>
+
+              <!-- Percussão / repique / pandeiro -->
+              <g class="stage-node" data-id="repique">
+                <circle cx="600" cy="220" r="24" fill="#2A1B10" stroke="#E3A73A" stroke-width="2"/>
+                <text x="600" y="224" text-anchor="middle" fill="#F4C468" font-size="9.5" font-family="JetBrains Mono, monospace">REPIQUE</text>
+              </g>
+              <g class="stage-node" data-id="pandeiro">
+                <circle cx="150" cy="230" r="26" fill="#2A1B10" stroke="#E3A73A" stroke-width="2"/>
+                <text x="150" y="234" text-anchor="middle" fill="#F4C468" font-size="10" font-family="JetBrains Mono, monospace">PANDEIRO</text>
+              </g>
+
+              <!-- Cavaco -->
+              <g class="stage-node" data-id="cavaco">
+                <circle cx="270" cy="240" r="27" fill="#2A1B10" stroke="#E3A73A" stroke-width="2"/>
+                <text x="270" y="244" text-anchor="middle" fill="#F4C468" font-size="10" font-family="JetBrains Mono, monospace">CAVACO</text>
+              </g>
+
+              <!-- Violão -->
+              <g class="stage-node" data-id="violao">
+                <circle cx="390" cy="250" r="27" fill="#2A1B10" stroke="#E3A73A" stroke-width="2"/>
+                <text x="390" y="254" text-anchor="middle" fill="#F4C468" font-size="9.5" font-family="JetBrains Mono, monospace">VIOLÃO 7C</text>
+              </g>
+
+              <!-- Vocais frente -->
+              <g class="stage-node" data-id="vocal1">
+                <circle cx="150" cy="360" r="24" fill="#2A1B10" stroke="#D9762B" stroke-width="2"/>
+                <text x="150" y="364" text-anchor="middle" fill="#F4C468" font-size="10" font-family="JetBrains Mono, monospace">VOCAL 1</text>
+              </g>
+              <g class="stage-node" data-id="vocal2">
+                <circle cx="270" cy="360" r="24" fill="#2A1B10" stroke="#D9762B" stroke-width="2"/>
+                <text x="270" y="364" text-anchor="middle" fill="#F4C468" font-size="10" font-family="JetBrains Mono, monospace">VOCAL 2</text>
+              </g>
+              <g class="stage-node" data-id="vocalprincipal">
+                <circle cx="390" cy="365" r="28" fill="#2A1B10" stroke="#D9762B" stroke-width="2.5"/>
+                <text x="390" y="362" text-anchor="middle" fill="#F4C468" font-size="9" font-family="JetBrains Mono, monospace">VOCAL</text>
+                <text x="390" y="374" text-anchor="middle" fill="#F4C468" font-size="9" font-family="JetBrains Mono, monospace">PRINCIPAL</text>
+              </g>
+              <g class="stage-node" data-id="vocal3">
+                <circle cx="510" cy="360" r="24" fill="#2A1B10" stroke="#D9762B" stroke-width="2"/>
+                <text x="510" y="364" text-anchor="middle" fill="#F4C468" font-size="10" font-family="JetBrains Mono, monospace">VOCAL 3</text>
+              </g>
+            </svg>
+          </div>
+
+          <!-- info panel -->
+          <div class="bg-[#100a06] rounded-2xl border border-ouro/15 p-6 flex flex-col">
+            <p class="eyebrow mb-2">Posição selecionada</p>
+            <h4 id="stageInfoTitle" class="section-title text-xl font-semibold text-creme mb-2">Bateria</h4>
+            <p id="stageInfoDesc" class="text-fumaca text-sm leading-relaxed mb-4">Kit completo com bumbo 20", caixa 14", 3 tons. Necessita tablado antiderrapante de 2x2m e alimentação elétrica isolada próxima.</p>
+            <div class="mt-auto space-y-2 text-sm">
+              <div class="flex justify-between border-b border-white/5 pb-2"><span class="text-fumaca">Canais</span><span id="stageInfoCh" class="font-mono text-ourolight">7</span></div>
+              <div class="flex justify-between border-b border-white/5 pb-2"><span class="text-fumaca">Microfones</span><span id="stageInfoMic" class="font-mono text-ourolight text-right">Kit Shure PGDMK6</span></div>
+              <div class="flex justify-between"><span class="text-fumaca">Phantom Power</span><span id="stageInfoPhantom" class="font-mono text-ourolight">Não</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- input list -->
+        <div class="mt-10 overflow-x-auto">
+          <h4 class="section-title text-xl font-semibold text-creme mb-4">Input List</h4>
+          <table class="rider-table w-full text-xs md:text-sm border-collapse">
+            <thead>
+              <tr class="text-left text-ourolight border-b border-ouro/30">
+                <th class="py-3 pr-4">CH</th>
+                <th class="py-3 pr-4">Instrumento / Fonte</th>
+                <th class="py-3 pr-4">Microfone / DI Recomendado</th>
+                <th class="py-3 pr-4">Phantom +48V</th>
+                <th class="py-3 pr-4">Suporte</th>
+              </tr>
+            </thead>
+            <tbody id="inputListBody" class="text-fumaca divide-y divide-white/5"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 2: CENTRAL DE MÍDIA -->
+    <div id="tab-midiakit" class="tab-panel">
+      <div class="card rounded-3xl p-6 md:p-10">
+        <h3 class="section-title text-2xl font-semibold text-creme mb-2">Central de Mídia & Asset Pack</h3>
+        <p class="text-fumaca text-sm mb-8">Pastas organizadas no Google Drive, prontas para impressão, redes sociais e materiais de divulgação.</p>
+
+        <div class="grid sm:grid-cols-2 gap-5">
+          <a href="https://drive.google.com" target="_blank" rel="noopener" class="card rounded-2xl p-6 flex items-center gap-4 group">
+            <div class="w-14 h-14 rounded-xl bg-laranja/15 flex items-center justify-center text-2xl text-laranja"><i class="fa-solid fa-image"></i></div>
+            <div class="flex-1">
+              <p class="font-semibold text-creme">Mídia Impressa / Outdoors</p>
+              <p class="text-xs text-fumaca">CMYK · RAW · High-Res</p>
+            </div>
+            <i class="fa-solid fa-arrow-up-right-from-square text-fumaca group-hover:text-ouro transition"></i>
+          </a>
+
+          <a href="https://drive.google.com" target="_blank" rel="noopener" class="card rounded-2xl p-6 flex items-center gap-4 group">
+            <div class="w-14 h-14 rounded-xl bg-vinho/20 flex items-center justify-center text-2xl text-vinholight"><i class="fa-solid fa-scissors"></i></div>
+            <div class="flex-1">
+              <p class="font-semibold text-creme">Recortes / Transparências</p>
+              <p class="text-xs text-fumaca">Fotos sem fundo · PNG</p>
+            </div>
+            <i class="fa-solid fa-arrow-up-right-from-square text-fumaca group-hover:text-ouro transition"></i>
+          </a>
+
+          <a href="https://drive.google.com" target="_blank" rel="noopener" class="card rounded-2xl p-6 flex items-center gap-4 group">
+            <div class="w-14 h-14 rounded-xl bg-ouro/15 flex items-center justify-center text-2xl text-ouro"><i class="fa-solid fa-mobile-screen"></i></div>
+            <div class="flex-1">
+              <p class="font-semibold text-creme">Redes Sociais</p>
+              <p class="text-xs text-fumaca">Stories & Feed · 1:1 e 9:16</p>
+            </div>
+            <i class="fa-solid fa-arrow-up-right-from-square text-fumaca group-hover:text-ouro transition"></i>
+          </a>
+
+          <a href="https://drive.google.com" target="_blank" rel="noopener" class="card rounded-2xl p-6 flex items-center gap-4 group">
+            <div class="w-14 h-14 rounded-xl bg-laranja/15 flex items-center justify-center text-2xl text-laranja"><i class="fa-solid fa-copyright"></i></div>
+            <div class="flex-1">
+              <p class="font-semibold text-creme">Logotipos e Marca</p>
+              <p class="text-xs text-fumaca">EPS · SVG · PNG</p>
+            </div>
+            <i class="fa-solid fa-arrow-up-right-from-square text-fumaca group-hover:text-ouro transition"></i>
+          </a>
+        </div>
+
+        <div class="mt-8 flex items-start gap-3 bg-ouro/5 border border-ouro/20 rounded-2xl p-5">
+          <i class="fa-solid fa-circle-info text-ouro mt-0.5"></i>
+          <p class="text-xs text-fumaca">Acesso liberado mediante solicitação da assessoria de imprensa ou produção contratante. Para liberar as pastas, envie o CNPJ do evento para <span class="text-ourolight">midia@sambaecadencia.com.br</span>.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 3: GERADOR DE RELEASES -->
+    <div id="tab-release" class="tab-panel">
+      <div class="card rounded-3xl p-6 md:p-10">
+        <h3 class="section-title text-2xl font-semibold text-creme mb-2">Gerador de Releases para Assessoria</h3>
+        <p class="text-fumaca text-sm mb-8">Preencha os dados do evento e gere automaticamente um texto de imprensa formatado.</p>
+
+        <div class="grid lg:grid-cols-2 gap-10">
+          <form id="releaseForm" class="space-y-5">
+            <div>
+              <label class="block text-xs font-bold text-ourolight uppercase tracking-wider mb-2">Cidade do show</label>
+              <input required id="relCidade" type="text" placeholder="Ex: Belo Horizonte - MG" class="w-full rounded-xl px-4 py-3 text-sm">
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-bold text-ourolight uppercase tracking-wider mb-2">Data</label>
+                <input required id="relData" type="date" class="w-full rounded-xl px-4 py-3 text-sm">
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-ourolight uppercase tracking-wider mb-2">Horário</label>
+                <input required id="relHora" type="time" class="w-full rounded-xl px-4 py-3 text-sm">
+              </div>
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-ourolight uppercase tracking-wider mb-2">Local / Teatro / Arena</label>
+              <input required id="relLocal" type="text" placeholder="Ex: Teatro Municipal" class="w-full rounded-xl px-4 py-3 text-sm">
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-bold text-ourolight uppercase tracking-wider mb-2">Valor do ingresso</label>
+                <input required id="relValor" type="text" placeholder="Ex: A partir de R$ 60" class="w-full rounded-xl px-4 py-3 text-sm">
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-ourolight uppercase tracking-wider mb-2">Ponto de venda</label>
+                <input required id="relPonto" type="text" placeholder="Ex: www.ingresso.com" class="w-full rounded-xl px-4 py-3 text-sm">
+              </div>
+            </div>
+            <button type="submit" class="btn-primary w-full rounded-full py-3.5 text-sm flex items-center justify-center gap-2">
+              <i class="fa-solid fa-wand-magic-sparkles"></i> Gerar Release
+            </button>
+          </form>
+
+          <div class="bg-[#100a06] rounded-2xl border border-ouro/15 p-6 flex flex-col">
+            <p class="eyebrow mb-3">Pré-visualização</p>
+            <div id="releaseOutput" class="flex-1 text-sm text-fumaca leading-relaxed whitespace-pre-line font-mono overflow-y-auto max-h-96">
+Preencha o formulário ao lado e clique em "Gerar Release" para visualizar o texto de imprensa aqui.
+            </div>
+            <div class="flex gap-3 mt-6">
+              <button id="copyReleaseBtn" disabled class="flex-1 btn-outline rounded-full py-3 text-xs font-bold flex items-center justify-center gap-2 opacity-50 cursor-not-allowed">
+                <i class="fa-regular fa-copy"></i> Copiar Texto
+              </button>
+              <button id="pdfReleaseBtn" disabled class="flex-1 btn-primary rounded-full py-3 text-xs flex items-center justify-center gap-2 opacity-50 cursor-not-allowed">
+                <i class="fa-solid fa-file-pdf"></i> Baixar PDF
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ CONTATO / FOOTER ============ -->
+<footer id="contato" class="pt-24 pb-10 relative overflow-hidden">
+  <div class="absolute -top-32 right-0 w-96 h-96 bg-vinho/20 blur-3xl rounded-full"></div>
+  <div class="max-w-7xl mx-auto px-5 md:px-8 relative">
+    <div class="grid lg:grid-cols-3 gap-12 pb-16 border-b border-white/10">
+      <div class="lg:col-span-1">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="pandeiro"></div>
+          <span class="font-display text-xl font-semibold text-creme">Samba & Cadência</span>
+        </div>
+        <p class="text-fumaca text-sm leading-relaxed">Grupo profissional de samba de raiz, pagode e partido alto, disponível para eventos corporativos, casas de show, festivais e ações institucionais em todo o Brasil.</p>
+        <div class="flex gap-3 mt-6">
+          <a href="#" class="w-10 h-10 rounded-full border border-ouro/30 flex items-center justify-center text-ouro hover:bg-ouro hover:text-couro transition"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="w-10 h-10 rounded-full border border-ouro/30 flex items-center justify-center text-ouro hover:bg-ouro hover:text-couro transition"><i class="fa-brands fa-youtube"></i></a>
+          <a href="#" class="w-10 h-10 rounded-full border border-ouro/30 flex items-center justify-center text-ouro hover:bg-ouro hover:text-couro transition"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" class="w-10 h-10 rounded-full border border-ouro/30 flex items-center justify-center text-ouro hover:bg-ouro hover:text-couro transition"><i class="fa-brands fa-spotify"></i></a>
+        </div>
+      </div>
+
+      <div>
+        <p class="eyebrow mb-5">Contratação</p>
+        <a href="https://wa.me/5511999999999?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20gostaria%20de%20contratar%20o%20Samba%20%26%20Cad%C3%AAncia%20para%20um%20evento." target="_blank" rel="noopener" class="flex items-center gap-3 bg-[#25D366]/10 border border-[#25D366]/40 rounded-2xl p-4 mb-4 hover:bg-[#25D366]/20 transition">
+          <i class="fa-brands fa-whatsapp text-2xl text-[#4ade80]"></i>
+          <div>
+            <p class="text-creme font-semibold text-sm">WhatsApp Comercial</p>
+            <p class="text-xs text-fumaca">(11) 99999-9999 — falar com o empresário</p>
+          </div>
+        </a>
+        <a href="mailto:contato@sambaecadencia.com.br" class="flex items-center gap-3 text-fumaca hover:text-ouro transition text-sm">
+          <i class="fa-solid fa-envelope"></i> contato@sambaecadencia.com.br
+        </a>
+      </div>
+
+      <div>
+        <p class="eyebrow mb-5">Navegação</p>
+        <ul class="space-y-3 text-sm text-fumaca">
+          <li><a href="#sobre" class="hover:text-ouro transition">Sobre a banda</a></li>
+          <li><a href="#shows" class="hover:text-ouro transition">Agenda de shows</a></li>
+          <li><a href="#midia" class="hover:text-ouro transition">Galeria & mídia</a></li>
+          <li><a href="#contratante" class="hover:text-ouro transition">Hub do contratante</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="flex flex-col md:flex-row justify-between items-center gap-3 pt-8 text-xs text-fumaca">
+      <p>© <span id="year"></span> Samba & Cadência. Todos os direitos reservados.</p>
+      <p>Assessoria e booking · Cadência Produções Artísticas</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ================= HEADER / MENU ================= */
+const menuBtn = document.getElementById('menuBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+menuBtn.addEventListener('click', () => {
+  const isHidden = mobileMenu.classList.contains('hidden');
+  mobileMenu.classList.toggle('hidden');
+  mobileMenu.classList.toggle('flex');
+  menuBtn.setAttribute('aria-expanded', String(isHidden));
+  menuBtn.innerHTML = isHidden ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-bars"></i>';
+});
+document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', () => {
+  mobileMenu.classList.add('hidden');
+  mobileMenu.classList.remove('flex');
+  menuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+}));
+
+document.getElementById('year').textContent = new Date().getFullYear();
+
+/* ================= PLAYER SIMULADO ================= */
+const tracks = [
+  { title: "Roda de Fundo de Quintal", album: 'Ao Vivo — Álbum "Raiz" (2023)', duration: 222 },
+  { title: "Cadência do Coração", album: 'Álbum "Partido de Mim" (2021)', duration: 198 },
+  { title: "Vem Sambar Comigo", album: 'Single (2024)', duration: 176 },
+  { title: "Menina do Balanço", album: 'Álbum "Raiz" (2023)', duration: 210 },
+];
+
+let currentTrack = 0;
+let isPlaying = false;
+let elapsed = 0;
+let playTimer = null;
+
+const playBtn = document.getElementById('playBtn');
+const playIcon = document.getElementById('playIcon');
+const trackTitleEl = document.getElementById('trackTitle');
+const trackAlbumEl = document.getElementById('trackAlbum');
+const progressBar = document.getElementById('progressBar');
+const curTimeEl = document.getElementById('curTime');
+const totTimeEl = document.getElementById('totTime');
+const vinylDisc = document.getElementById('vinylDisc');
+const trackListEl = document.getElementById('trackList');
+
+function fmt(sec){
+  const m = Math.floor(sec/60);
+  const s = Math.floor(sec%60).toString().padStart(2,'0');
+  return `${m}:${s}`;
+}
+
+function renderTrackList(){
+  trackListEl.innerHTML = tracks.map((t,i)=>`
+    <li data-index="${i}" class="flex items-center justify-between py-3 cursor-pointer group">
+      <div class="flex items-center gap-3 min-w-0">
+        <span class="w-6 text-fumaca text-xs font-mono ${i===currentTrack ? 'text-ouro font-bold':''}">${i===currentTrack && isPlaying ? '<i class=\"fa-solid fa-volume-high\"></i>' : (i+1).toString().padStart(2,'0')}</span>
+        <span class="truncate ${i===currentTrack ? 'text-creme font-semibold':'text-fumaca'} group-hover:text-ourolight transition">${t.title}</span>
+      </div>
+      <span class="text-xs text-fumaca font-mono shrink-0 ml-3">${fmt(t.duration)}</span>
+    </li>
+  `).join('');
+  trackListEl.querySelectorAll('li').forEach(li=>{
+    li.addEventListener('click', ()=>{
+      currentTrack = parseInt(li.dataset.index);
+      loadTrack();
+      if(!isPlaying) togglePlay();
+    });
+  });
+}
+
+function loadTrack(){
+  const t = tracks[currentTrack];
+  trackTitleEl.textContent = t.title;
+  trackAlbumEl.textContent = t.album;
+  totTimeEl.textContent = fmt(t.duration);
+  elapsed = 0;
+  progressBar.style.width = '0%';
+  curTimeEl.textContent = '0:00';
+  renderTrackList();
+}
+
+function togglePlay(){
+  isPlaying = !isPlaying;
+  playIcon.className = isPlaying ? 'fa-solid fa-pause' : 'fa-solid fa-play';
+  vinylDisc.classList.toggle('spin', isPlaying);
+  renderTrackList();
+
+  if(isPlaying){
+    playTimer = setInterval(()=>{
+      elapsed += 1;
+      const dur = tracks[currentTrack].duration;
+      if(elapsed >= dur){
+        nextTrack();
+        return;
+      }
+      progressBar.style.width = (elapsed/dur*100)+'%';
+      curTimeEl.textContent = fmt(elapsed);
+    }, 1000);
+  } else {
+    clearInterval(playTimer);
+  }
+}
+
+function nextTrack(){
+  currentTrack = (currentTrack+1) % tracks.length;
+  const wasPlaying = isPlaying;
+  clearInterval(playTimer);
+  isPlaying = false;
+  loadTrack();
+  if(wasPlaying) togglePlay();
+}
+function prevTrack(){
+  currentTrack = (currentTrack-1+tracks.length) % tracks.length;
+  const wasPlaying = isPlaying;
+  clearInterval(playTimer);
+  isPlaying = false;
+  loadTrack();
+  if(wasPlaying) togglePlay();
+}
+
+playBtn.addEventListener('click', togglePlay);
+document.getElementById('nextBtn').addEventListener('click', nextTrack);
+document.getElementById('prevBtn').addEventListener('click', prevTrack);
+loadTrack();
+
+/* ================= AGENDA DE SHOWS ================= */
+/* ------------------------------------------------------------------------
+   INTEGRAÇÃO COM GOOGLE SHEETS (edite a agenda pelo celular)
+   1. Crie uma Planilha Google com as colunas, nesta ordem, na primeira linha:
+      Data | Cidade | Local | Hora | Status
+      Ex.:  12/09/2026 | São Paulo - SP | Sesc Pompeia | 21h | disponivel
+      (Status aceita "disponivel" ou "esgotado" — sem acento, minúsculo)
+   2. No Google Sheets: Arquivo > Compartilhar > Publicar na Web.
+   3. Escolha a aba da agenda e o formato "Valores separados por vírgula (.csv)".
+   4. Clique em Publicar e copie o link gerado.
+   5. Cole o link abaixo, entre as aspas de GOOGLE_SHEET_CSV_URL.
+   Deixando em branco, o site usa a lista fixa (SHOWS_PADRAO) logo abaixo.
+------------------------------------------------------------------------- */
+const GOOGLE_SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSmpwgpEyFeiYJ5OyFMTNRqNyxUl_UuDI7NATQgR5IQ1aY64U_6yY8Nv-5b1CCzaR0Drb9NqLQvLVsB/pub?gid=0&single=true&output=csv"; // <-- COLE AQUI o link CSV publicado da planilha
+
+const SHOWS_PADRAO = [
+  { dataRaw: "12/09/2026", cidade: "São Paulo - SP", local: "Sesc Pompeia", hora: "21h", status: "disponivel" },
+  { dataRaw: "26/09/2026", cidade: "Belo Horizonte - MG", local: "Teatro Sesiminas", hora: "20h", status: "disponivel" },
+  { dataRaw: "03/10/2026", cidade: "Rio de Janeiro - RJ", local: "Fundição Progresso", hora: "22h", status: "esgotado" },
+  { dataRaw: "17/10/2026", cidade: "Salvador - BA", local: "Concha Acústica", hora: "19h30", status: "disponivel" },
+  { dataRaw: "07/11/2026", cidade: "Curitiba - PR", local: "Teatro Guaíra", hora: "21h", status: "disponivel" },
+  { dataRaw: "21/11/2026", cidade: "Recife - PE", local: "Marco Zero", hora: "18h", status: "esgotado" },
+];
+
+const MESES_ABREV = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
+const agendaGrid = document.getElementById('agendaGrid');
+
+function parseDataBR(dataRaw){
+  const partes = (dataRaw || '').split('/');
+  if(partes.length < 3) return { dia: '--', mesLabel: '---', anoCurto: '--' };
+  const [d, m, y] = partes;
+  const mesIndex = parseInt(m, 10) - 1;
+  return {
+    dia: d.padStart(2,'0'),
+    mesLabel: MESES_ABREV[mesIndex] || '---',
+    anoCurto: (y || '').slice(-2),
+  };
+}
+
+function renderAgenda(lista){
+  if(!lista || !lista.length){
+    agendaGrid.innerHTML = `<div class="card rounded-2xl p-8 text-center text-fumaca text-sm md:col-span-2">Nenhum show cadastrado no momento. Volte em breve!</div>`;
+    return;
+  }
+  agendaGrid.innerHTML = lista.map(s => {
+    const { dia, mesLabel, anoCurto } = parseDataBR(s.dataRaw);
+    const disponivel = (s.status || '').toLowerCase().indexOf('esgot') === -1;
+    return `
+    <div class="card rounded-2xl p-6 flex items-center justify-between gap-5">
+      <div class="flex items-center gap-5 min-w-0">
+        <div class="text-center shrink-0 w-16">
+          <p class="font-display text-2xl font-bold text-ouro leading-none">${dia}</p>
+          <p class="text-[11px] uppercase text-fumaca tracking-wider mt-1">${mesLabel} '${anoCurto}</p>
+        </div>
+        <div class="w-px h-12 bg-ouro/20 shrink-0"></div>
+        <div class="min-w-0">
+          <p class="font-semibold text-creme truncate">${s.cidade}</p>
+          <p class="text-sm text-fumaca truncate">${s.local} · ${s.hora}</p>
+        </div>
+      </div>
+      <span class="shrink-0 text-xs font-bold px-3 py-1.5 rounded-full ${disponivel ? 'badge-disponivel' : 'badge-esgotado'}">
+        ${disponivel ? 'Ingressos disponíveis' : 'Esgotado'}
+      </span>
+    </div>
+  `;
+  }).join('');
+}
+
+function parseCSV(text){
+  const rows = [];
+  let row = [], field = '', inQuotes = false;
+  for(let i = 0; i < text.length; i++){
+    const c = text[i];
+    if(inQuotes){
+      if(c === '"'){
+        if(text[i+1] === '"'){ field += '"'; i++; } else { inQuotes = false; }
+      } else {
+        field += c;
+      }
+    } else if(c === '"'){
+      inQuotes = true;
+    } else if(c === ','){
+      row.push(field); field = '';
+    } else if(c === '\n'){
+      row.push(field); rows.push(row); row = []; field = '';
+    } else if(c === '\r'){
+      /* ignora */
+    } else {
+      field += c;
+    }
+  }
+  if(field.length || row.length){ row.push(field); rows.push(row); }
+  return rows.filter(r => r.length > 1 && r.some(c => c.trim() !== ''));
+}
+
+async function carregarAgenda(){
+  if(!GOOGLE_SHEET_CSV_URL){
+    renderAgenda(SHOWS_PADRAO);
+    return;
+  }
+  agendaGrid.innerHTML = `<div class="card rounded-2xl p-8 text-center text-fumaca text-sm md:col-span-2"><i class="fa-solid fa-spinner fa-spin mr-2"></i>Carregando agenda...</div>`;
+  try{
+    const separador = GOOGLE_SHEET_CSV_URL.includes('?') ? '&' : '?';
+    const res = await fetch(GOOGLE_SHEET_CSV_URL + separador + 'cachebust=' + Date.now());
+    if(!res.ok) throw new Error('Falha ao buscar planilha');
+    const texto = await res.text();
+    const linhas = parseCSV(texto);
+    const [, ...linhasDados] = linhas; // ignora o cabeçalho
+    const listaPlanilha = linhasDados
+      .map(l => ({
+        dataRaw: (l[0] || '').trim(),
+        cidade: (l[1] || '').trim(),
+        local: (l[2] || '').trim(),
+        hora: (l[3] || '').trim(),
+        status: (l[4] || '').trim().toLowerCase(),
+      }))
+      .filter(s => s.cidade);
+    renderAgenda(listaPlanilha.length ? listaPlanilha : SHOWS_PADRAO);
+  }catch(err){
+    console.warn('Não foi possível carregar a agenda da planilha, exibindo dados padrão.', err);
+    renderAgenda(SHOWS_PADRAO);
+  }
+}
+
+carregarAgenda();
+
+/* ================= GALERIA ================= */
+const galleryItems = [
+  { seed: 'samba1', cat: 'shows' },
+  { seed: 'samba2', cat: 'palco' },
+  { seed: 'samba3', cat: 'bastidores' },
+  { seed: 'samba4', cat: 'shows' },
+  { seed: 'samba5', cat: 'bastidores' },
+  { seed: 'samba6', cat: 'palco' },
+  { seed: 'samba7', cat: 'shows' },
+  { seed: 'samba8', cat: 'palco' },
+];
+
+const galleryGrid = document.getElementById('galleryGrid');
+function renderGallery(filter){
+  const filtered = filter === 'todos' ? galleryItems : galleryItems.filter(g => g.cat === filter);
+  galleryGrid.innerHTML = filtered.map(g => `
+    <div class="gallery-item rounded-xl overflow-hidden border border-ouro/15 aspect-square bg-carvao">
+      <img src="https://picsum.photos/seed/${g.seed}/500/500" alt="Foto de show — Samba & Cadência" class="w-full h-full object-cover" loading="lazy">
+    </div>
+  `).join('');
+}
+renderGallery('todos');
+
+document.querySelectorAll('.filter-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    renderGallery(btn.dataset.filter);
+  });
+});
+
+/* ================= TABS DO HUB ================= */
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-'+btn.dataset.tab).classList.add('active');
+  });
+});
+
+/* ================= MAPA DE PALCO ================= */
+const stageInfo = {
+  bateria: { title: "Bateria", desc: "Kit completo com bumbo 20\", caixa 14\", 3 tons. Necessita tablado antiderrapante de 2x2m e alimentação elétrica isolada próxima.", ch: 7, mic: "Kit Shure PGDMK6", phantom: "Não" },
+  surdo1: { title: "Surdo 1 (marcação)", desc: "Surdo de 22\" grave. Posicionado sobre pedestal reforçado.", ch: 1, mic: "Shure Beta 91A / AKG D112", phantom: "Não" },
+  surdo2: { title: "Surdo 2 (resposta)", desc: "Surdo de 20\" resposta. Próximo ao surdo de marcação.", ch: 1, mic: "Shure Beta 91A", phantom: "Não" },
+  repique: { title: "Repique de Mão", desc: "Percussão de mão, requer microfone dinâmico próximo por conta da dinâmica alta.", ch: 1, mic: "Shure SM57", phantom: "Não" },
+  pandeiro: { title: "Pandeiro", desc: "Instrumento de alta sensibilidade; recomenda-se microfone condensador com boa resposta em agudos.", ch: 1, mic: "AKG C451B / Shure SM81", phantom: "Sim" },
+  cavaco: { title: "Cavaquinho", desc: "Captação via microfone condensador ou saída direta (DI) do captador ativo do instrumento.", ch: 1, mic: "DI Box ativa + Shure SM81 (reforço)", phantom: "Sim" },
+  violao: { title: "Violão de 7 Cordas", desc: "Captador piezo interno + reforço com microfone condensador a curta distância.", ch: 2, mic: "DI Box + AKG C414", phantom: "Sim" },
+  vocal1: { title: "Vocal de Apoio 1", desc: "Backing vocal, posição lateral esquerda do palco.", ch: 1, mic: "Shure SM58", phantom: "Não" },
+  vocal2: { title: "Vocal de Apoio 2", desc: "Backing vocal, posição central-esquerda.", ch: 1, mic: "Shure SM58", phantom: "Não" },
+  vocalprincipal: { title: "Vocal Principal", desc: "Voz solista, centro do palco. Monitor dedicado com mix próprio.", ch: 1, mic: "Shure Beta 58A / Sennheiser e935", phantom: "Não" },
+  vocal3: { title: "Vocal de Apoio 3", desc: "Backing vocal, posição central-direita.", ch: 1, mic: "Shure SM58", phantom: "Não" },
+  mesa: { title: "Mesa de Som (FOH)", desc: "Posicionada no meio da plateia, distante no mínimo 15m do palco, com energia isolada e vista limpa do palco.", ch: "—", mic: "Console digital mínimo 24 canais", phantom: "—" },
+};
+
+const stageInfoTitle = document.getElementById('stageInfoTitle');
+const stageInfoDesc = document.getElementById('stageInfoDesc');
+const stageInfoCh = document.getElementById('stageInfoCh');
+const stageInfoMic = document.getElementById('stageInfoMic');
+const stageInfoPhantom = document.getElementById('stageInfoPhantom');
+
+document.querySelectorAll('.stage-node').forEach(node=>{
+  node.addEventListener('click', ()=>{
+    document.querySelectorAll('.stage-node').forEach(n=>n.classList.remove('selected'));
+    node.classList.add('selected');
+    const info = stageInfo[node.dataset.id];
+    if(!info) return;
+    stageInfoTitle.textContent = info.title;
+    stageInfoDesc.textContent = info.desc;
+    stageInfoCh.textContent = info.ch;
+    stageInfoMic.textContent = info.mic;
+    stageInfoPhantom.textContent = info.phantom;
+  });
+});
+
+/* ================= INPUT LIST ================= */
+const inputList = [
+  ["01","Bumbo","AKG D112 / Shure Beta 52A","Não","Grampo interno"],
+  ["02","Caixa","Shure SM57","Não","Clamp"],
+  ["03-04","Tons","Sennheiser e604 (par)","Não","Clamp"],
+  ["05","Surdo Marcação","Shure Beta 91A","Não","Pedestal"],
+  ["06","Surdo Resposta","Shure Beta 91A","Não","Pedestal"],
+  ["07","Overhead Bateria","AKG C214","Sim","Pedestal girafa"],
+  ["08","Repique","Shure SM57","Não","Pedestal curto"],
+  ["09","Pandeiro","Shure SM81","Sim","Pedestal girafa"],
+  ["10","Cavaquinho (DI)","DI Box passiva","Não","—"],
+  ["11","Violão 7 Cordas (DI)","DI Box ativa","Sim","—"],
+  ["12","Vocal Principal","Shure Beta 58A","Não","Pedestal reto"],
+  ["13","Vocal Apoio 1","Shure SM58","Não","Pedestal reto"],
+  ["14","Vocal Apoio 2","Shure SM58","Não","Pedestal reto"],
+  ["15","Vocal Apoio 3","Shure SM58","Não","Pedestal reto"],
+  ["16","Retorno / Talkback","Console local","Não","—"],
+];
+document.getElementById('inputListBody').innerHTML = inputList.map(row => `
+  <tr class="hover:bg-white/5 transition">
+    ${row.map((cell,i) => `<td class="py-3 pr-4 ${i===0 ? 'text-ourolight font-bold':''}">${cell}</td>`).join('')}
+  </tr>
+`).join('');
+
+/* ================= DOWNLOAD RIDER (SIMULADO) ================= */
+document.getElementById('downloadRiderBtn').addEventListener('click', ()=>{
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+  doc.setFont('helvetica','bold');
+  doc.setFontSize(18);
+  doc.text('Rider Técnico — Samba & Cadência', 14, 20);
+  doc.setFontSize(10);
+  doc.setFont('helvetica','normal');
+  doc.text('Documento simulado gerado automaticamente pelo site.', 14, 28);
+
+  let y = 42;
+  doc.setFont('helvetica','bold');
+  doc.setFontSize(13);
+  doc.text('Input List', 14, y);
+  y += 8;
+  doc.setFontSize(9);
+  doc.setFont('helvetica','normal');
+  inputList.forEach(row=>{
+    doc.text(`CH ${row[0]}  —  ${row[1]}  —  Mic: ${row[2]}  —  Phantom: ${row[3]}  —  Suporte: ${row[4]}`, 14, y);
+    y += 6;
+    if(y > 270){ doc.addPage(); y = 20; }
+  });
+
+  y += 8;
+  doc.setFont('helvetica','bold');
+  doc.setFontSize(13);
+  doc.text('Requisitos Gerais', 14, y);
+  y += 8;
+  doc.setFont('helvetica','normal');
+  doc.setFontSize(9);
+  const reqs = [
+    'Palco mínimo: 8m x 6m, com tablado nivelado.',
+    'Energia: 2 pontos de força isolada 220V/20A próximos ao palco.',
+    'Console FOH e monitor digital com no mínimo 24 canais.',
+    'Sistema de PA compatível com o porte do público estimado.',
+    'Camarim com espelho, água e frutas para 9 pessoas.',
+    'Equipe de carga e descarga (roadcrew local) disponível 2h antes da passagem de som.',
+  ];
+  reqs.forEach(r=>{ doc.text('• '+r, 14, y); y += 7; });
+
+  doc.save('rider-tecnico-samba-e-cadencia.pdf');
+});
+
+/* ================= GERADOR DE RELEASES ================= */
+const releaseForm = document.getElementById('releaseForm');
+const releaseOutput = document.getElementById('releaseOutput');
+const copyReleaseBtn = document.getElementById('copyReleaseBtn');
+const pdfReleaseBtn = document.getElementById('pdfReleaseBtn');
+let currentReleaseText = '';
+
+function formatDateBR(isoDate){
+  const [y,m,d] = isoDate.split('-');
+  return `${d}/${m}/${y}`;
+}
+
+releaseForm.addEventListener('submit', (e)=>{
+  e.preventDefault();
+  const cidade = document.getElementById('relCidade').value.trim();
+  const data = document.getElementById('relData').value;
+  const hora = document.getElementById('relHora').value;
+  const local = document.getElementById('relLocal').value.trim();
+  const valor = document.getElementById('relValor').value.trim();
+  const ponto = document.getElementById('relPonto').value.trim();
+
+  const dataBR = data ? formatDateBR(data) : '[data]';
+
+  currentReleaseText =
+`RELEASE DE IMPRENSA
+
+SAMBA & CADÊNCIA CHEGA A ${cidade.toUpperCase()} COM SHOW IMPERDÍVEL
+
+${cidade}, ${dataBR} — O grupo Samba & Cadência se apresenta em ${cidade} no dia ${dataBR}, às ${hora}h, em apresentação no ${local}. O show reúne clássicos do samba de raiz, partido alto e pagode, com arranjos autorais e um time de nove músicos em cena.
+
+Com mais de 400 apresentações realizadas por todo o Brasil e quase duas décadas de estrada, o grupo é conhecido por transformar cada apresentação em uma verdadeira roda de samba, aproximando o público da raiz do gênero.
+
+SERVIÇO
+Atração: Samba & Cadência
+Data: ${dataBR}
+Horário: ${hora}h
+Local: ${local} — ${cidade}
+Ingressos: ${valor}
+Pontos de venda: ${ponto}
+
+Sobre o Samba & Cadência
+Fundado em 2007, o grupo transita entre o samba de raiz, o pagode romântico e o partido alto, somando mais de quatrocentas apresentações e forte presença nas rádios e plataformas digitais.
+
+Contato para imprensa:
+midia@sambaecadencia.com.br`;
+
+  releaseOutput.textContent = currentReleaseText;
+  [copyReleaseBtn, pdfReleaseBtn].forEach(b=>{
+    b.disabled = false;
+    b.classList.remove('opacity-50','cursor-not-allowed');
+  });
+});
+
+copyReleaseBtn.addEventListener('click', ()=>{
+  if(!currentReleaseText) return;
+  navigator.clipboard.writeText(currentReleaseText).then(()=>{
+    const original = copyReleaseBtn.innerHTML;
+    copyReleaseBtn.innerHTML = '<i class="fa-solid fa-check"></i> Copiado!';
+    setTimeout(()=> copyReleaseBtn.innerHTML = original, 2000);
+  });
+});
+
+pdfReleaseBtn.addEventListener('click', ()=>{
+  if(!currentReleaseText) return;
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+  doc.setFont('helvetica','normal');
+  doc.setFontSize(10);
+  const lines = doc.splitTextToSize(currentReleaseText, 180);
+  doc.text(lines, 14, 20);
+  doc.save('release-samba-e-cadencia.pdf');
+});
+
+/* ================= HEADER SHADOW ON SCROLL ================= */
+const header = document.getElementById('siteHeader');
+window.addEventListener('scroll', ()=>{
+  if(window.scrollY > 20){
+    header.classList.add('shadow-lg');
+  } else {
+    header.classList.remove('shadow-lg');
+  }
+});
+</script>
+
+</body>
+</html>
